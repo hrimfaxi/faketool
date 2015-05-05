@@ -10,4 +10,13 @@
 #define debug(...)
 #endif
 
+void
+close_all_fd(void);
+
+void
+copy_files(const char *src, const char *dst);
+
+char *
+gen_random_string(char *buf, unsigned int size);
+
 #endif

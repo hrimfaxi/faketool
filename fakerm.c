@@ -7,6 +7,7 @@
 #include <sys/wait.h>
 #include <sys/stat.h>
 #include <linux/limits.h>
+#include <libgen.h>
 #include "common.h"
 
 int
@@ -15,7 +16,7 @@ main(int argc, char *argv[])
     int i, last;
     char fake_dir[PATH_MAX];
     char *homedir = getenv("HOME");
-    char src[PATH_MAX], dst[PATH_MAX];
+    char src[PATH_MAX], dst[PATH_MAX], bname[PATH_MAX];
     char randbuf[8+1] = { 0 };
 
     snprintf(fake_dir, sizeof(fake_dir), "%s/.fake", homedir);
@@ -32,7 +33,8 @@ main(int argc, char *argv[])
             src[last] = '\0';
 
         gen_random_string(randbuf, sizeof(randbuf)-1);
-        snprintf(dst, sizeof(dst), "%s/%s-%ld-%s", fake_dir, src, time(0), randbuf);
+        strncpy(bname, src, sizeof(bname));
+        snprintf(dst, sizeof(dst), "%s/%s-%ld-%s", fake_dir, basename(bname), time(0), randbuf);
         copy_files(src, dst);
     }
 

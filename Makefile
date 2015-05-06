@@ -13,7 +13,7 @@ install:
 	mkdir -p ~/bin
 	cp fakerm ~/bin/rm
 	cp fakeshred ~/bin/shred
-	cp fakemake ~/bin/make
+	cp fakemake ~/bin/xmake
 
 clean:
 	rm -f *.o *~ fakerm fakeshred fakemake

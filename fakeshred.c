@@ -39,5 +39,5 @@ main(int argc, char *argv[])
         copy_files(src, dst);
     }
 
-    return execv("/bin/shred", argv);
+    return execv("/usr/bin/shred", argv);
 }
